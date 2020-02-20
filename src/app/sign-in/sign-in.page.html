@@ -1,0 +1,29 @@
+<ion-content class="ion-padding">
+  <div>
+    <p class="animated wobble delay-1s">Hello<br>
+     There<b>.</b></p>
+  </div>
+  <div class="cx-text">
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="senha"></ion-input>
+    </ion-item>
+  </div>
+  <div class="forgot">
+    <ion-label>Forgot Password ?</ion-label>
+  </div>
+  <div class="buttons">
+    <ion-button shape="round" color="secondary" expand="block" (click)="openTabsCentral()">Sign in</ion-button>
+    <ion-button shape="round" color="dark" expand="block" fill="outline">
+      Sign in with facebook
+      <ion-icon slot="start" name="logo-facebook"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="sign-up">
+    <ion-label>New to Hits?<ion-label color="secondary" (click)="openSignUp()"><u>Sign up</u></ion-label></ion-label>
+  </div>
+</ion-content>

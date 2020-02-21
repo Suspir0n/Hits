@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="toTop">
+    <ion-icon name="arrow-undo" (click)="backHome()"></ion-icon>
+    <ion-label class="lblAccount">MY ACCOUNT</ion-label>
+  </div>
+  <div class="options">
+    <ion-list>
+      <ion-item>
+        <ion-label>Notificações por aplicativo</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Notificações por E-mail</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Theme Dark</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Language</ion-label>
+        <ion-select value="Inglês" okText="Ok" cancelText="Cancel">
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="exit()" color="grey21" fill="outline" shape="round">EXIT</ion-button>
+  </div>
+</ion-content>

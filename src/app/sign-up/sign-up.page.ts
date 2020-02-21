@@ -22,6 +22,7 @@ export class SignUpPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.sendUser(this.user);
   }
   openSignIn(){
     this.navCtrl.navigateRoot("sign-in");

@@ -12,8 +12,6 @@ The niche of this app is related to music itself.
 
 beta layouts.
 
-![signInUp](https://raw.githubusercontent.com/Suspir0n/Hits/master/ev3.png)
-
 ### Download
 
 It is currently being implemented.

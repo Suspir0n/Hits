@@ -1,8 +1,6 @@
 # Mobile Hits
 ## Success is in your hands.
 
-Current version: 0.2.0;
-
 ### Description
 
 This app is being developed in order to promote the realization of the big dreams of children, youth, adults, the elderly, in short, people of all ages.

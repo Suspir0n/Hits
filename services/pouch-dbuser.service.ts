@@ -1,93 +1,92 @@
 import PouchDB from 'pouchdb';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
+var pouchDB: PouchDB = new PouchDB('user');
 
 @Injectable({
   providedIn: 'root'
 })
-export class PouchDBUserService {
-  public pouchDB: PouchDB;
+export default class PouchDBUserService{
+  
   public users: any;
   public data: any;
 
   constructor() 
   { 
-    this.initPouchDBUser();
   }
-  AllUser() {
-    if (this.data) {
-      return Promise.resolve(this.data);
-    }
 
-    return new Promise(resolve => {
+   AllUser() {
+     if (this.data) {
+       return Promise.resolve(this.data);
+     }
 
-      this.pouchDB.allDocs({
+     return new Promise(resolve => {
 
-        include_docs: true
+       pouchDB.allDocs({
 
-      }).then((result) => {
+         include_docs: true
 
-        this.data = [];
+       }).then((result) => {
 
-        let docs = result.rows.map((row) => {
-          this.data.push(row.doc);
-        });
+         this.data = [];
 
-        resolve(this.data);
+         let docs = result.rows.map((row) => {
+           this.data.push(row.doc);
+         });
 
-        this.pouchDB.changes({ live: true, since: 'now', include_docs: true }).on('change', (change) => {
-          this.handleChange(change);
-        });
+         resolve(this.data);
 
-      }).catch((error) => {
+          pouchDB.changes({ live: true, since: 'now', include_docs: true }).on('change', (change) => {
+           this.handleChange(change);
+         });
 
-        console.log(error);
+       }).catch((error) => {
 
-      });
-    });
-  }
-  change(user){
-    return this.pouchDB.put(user);
-  }
-  delete(user){
-    return this.pouchDB.remove(user);
-  }
-  handleChange(change: any) {
-    let changedDoc = null;
-    let changedIndex = null;
+         console.log(error);
 
-    this.data.forEach((doc, index) => {
+       });
+     });
+   }
+   change(user){
+     return pouchDB.put(user);
+   }
+   delete(user){
+     return pouchDB.remove(user);
+   }
+   handleChange(change: any) {
+     let changedDoc = null;
+     let changedIndex = null;
 
-      if (doc._id === change.id) {
-        changedDoc = doc;
-        changedIndex = index;
-      }
+     this.data.forEach((doc, index) => {
 
-    });
+       if (doc._id === change.id) {
+         changedDoc = doc;
+         changedIndex = index;
+       }
+
+     });
     
-    //A document was deleted
-    if (change.deleted) {
-      this.data.splice(changedIndex, 1);
-    }
-    else {
+     //A document was deleted
+     if (change.deleted) {
+       this.data.splice(changedIndex, 1);
+     }
+     else {
 
-      //A document was updated
-      if (changedDoc) {
-        this.data[changedIndex] = change.doc;
-      }
+       //A document was updated
+       if (changedDoc) {
+         this.data[changedIndex] = change.doc;
+       }
 
-      //A document was added
-      else {
-        this.data.push(change.doc);
-      }
+       //A document was added
+       else {
+         this.data.push(change.doc);
+       }
 
-    }
-  }
-  initPouchDBUser(){
-    this.pouchDB = new PouchDB('user');
-  }
-  insertUserPouchDB(user){
-    return this.pouchDB.put(user);
-  }
+     }
+   }
+  
+   insertUserPouchDB(user){
+     pouchDB.put(user);
+   }
 
 }
